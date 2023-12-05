@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 app.use(express.json()); // for parsing application/json
+module.exports = app;
+
 
 app.post('/calculate', (req, res) => {
   const { principal, interestRate, years } = req.body;
@@ -20,5 +22,3 @@ const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   console.log(`Calculation Service running on port ${PORT}`);
 });
-
-module.exports = app;
