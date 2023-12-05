@@ -19,7 +19,3 @@ node_modules/
 # dotenv environment variable files
 .env
 .env.test
-
-# Docker image artifacts
-Dockerfile
-.dockerignore
