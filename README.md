@@ -31,8 +31,9 @@ Then, install the dependencies:
 
 ```bash
 npm install
-Running the Application
 ```
+
+## Running the Application
 
 To run the application locally:
 
@@ -42,7 +43,8 @@ npm start
 
 The server will start, and you can access the application at http://localhost:3000.
 
-Dockerizing the Application
+## Dockerizing the Application
+
 To build the Docker image:
 
 ```bash
@@ -56,10 +58,10 @@ docker run -p 3000:3000 mortgage-calculator
 ```
 The application will be accessible at http://localhost:3000.
 
-Deployment
+## Deployment
 This application is set up with a basic CI/CD pipeline using GitHub Actions, which will automatically deploy the application upon any commits to the main branch.
 
-Built With
+## Built With
 Node.js - The JavaScript runtime used.
 Express - The web framework for Node.js.
 Docker - Containerization platform.
@@ -67,10 +69,10 @@ GitHub Actions - CI/CD tool.
 Contributing
 Please read CONTRIBUTING.md for details on our code of conduct, and the process for submitting pull requests to us.
 
-Versioning
+## Versioning
 We use SemVer for versioning. For the versions available, see the tags on this repository.
 
-Authors
+## Authors
 Your Name - Initial work - YourUsername
-License
+## License
 This project is licensed under the MIT License - see the LICENSE.md file for details.
