@@ -12,6 +12,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GH_PAT }}  # Use your PAT for checkout
       - name: Set up Git
         run: |
           git config --global user.name 'Your Name'
@@ -21,7 +23,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '16.x'
-          token: ${{ secrets.GH_PAT }}  # Use your PAT for checkout
 
       - name: Install dependencies
         run: npm install
