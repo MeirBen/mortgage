@@ -34,7 +34,8 @@ jobs:
           NEW_TAG="v$(date +%Y%m%d%H%M%S)"
           echo "New Tag: $NEW_TAG"
           git tag $NEW_TAG
-          git push https://${{ secrets.GH_PAT }}@github.com/MeirBen/mortgage.git --tags
+          # Use the PAT in the Git push command
+          git push https://${{ secrets.GH_PAT }}:x-oauth-basic@github.com/MeirBen/mortgage.git --tags
 
 
       - name: Build Docker Image
