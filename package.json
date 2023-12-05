@@ -2,10 +2,10 @@
   "name": "mortgage",
   "version": "1.0.0",
   "description": "mortgage app",
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
     "test": "mocha",
-    "start": "node app.js"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
