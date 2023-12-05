@@ -32,26 +32,29 @@ Then, install the dependencies:
 ```bash
 npm install
 Running the Application
-To run the application locally:
 ```
+
+To run the application locally:
 
 ```bash
 npm start
-The server will start, and you can access the application at http://localhost:3000.
 ```
+
+The server will start, and you can access the application at http://localhost:3000.
 
 Dockerizing the Application
 To build the Docker image:
 
 ```bash
 docker build -t mortgage-calculator .
-To run the application using Docker:
 ```
+
+To run the application using Docker:
     
 ```bash
 docker run -p 3000:3000 mortgage-calculator
-The application will be accessible at http://localhost:3000.
 ```
+The application will be accessible at http://localhost:3000.
 
 Deployment
 This application is set up with a basic CI/CD pipeline using GitHub Actions, which will automatically deploy the application upon any commits to the main branch.
