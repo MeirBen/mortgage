@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/MeirBen/mortgage/issues"
   },
-  "homepage": "https://github.com/MeirBen/mortgage#readme"
+  "homepage": "https://github.com/MeirBen/mortgage#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
 }
