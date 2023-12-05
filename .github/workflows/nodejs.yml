@@ -2,18 +2,20 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      NEW_TAG: "v$(date +%Y%m%d%H%M%S)" # Set the NEW_TAG as an environment variable
 
     steps:
       - uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GH_PAT }}  # Use your PAT for checkout
+          token: ${{ secrets.GH_PAT }} # Use your PAT for checkout
       - name: Set up Git
         run: |
           git config --global user.name 'Your Name'
@@ -21,7 +23,7 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '16.x'
+          node-version: "16.x"
 
       - name: Install dependencies
         run: npm install
@@ -31,15 +33,12 @@ jobs:
 
       - name: Calculate new version and tag
         run: |
-          NEW_TAG="v$(date +%Y%m%d%H%M%S)"
           echo "New Tag: $NEW_TAG"
           git tag $NEW_TAG
-          # Use the PAT in the Git push command
           git push https://${{ secrets.GH_PAT }}:x-oauth-basic@github.com/MeirBen/mortgage.git --tags
 
-
       - name: Build Docker Image
-        run: docker build -t mortgage-calculator:$NEW_TAG .
+        run: docker build -t mortgage-calculator:${{ env.NEW_TAG }} .
 
       - name: Login to Docker Hub
         run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
