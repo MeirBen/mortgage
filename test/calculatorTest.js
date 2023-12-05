@@ -1,18 +1,28 @@
 const chai = require('chai');
+const chaiHttp = require('chai-http');
+const app = require('../app'); // Adjust the path to your calculation-service.js
 const expect = chai.expect;
-const request = require('supertest');
-const app = require('../app'); // Adjust the path according to your project structure
 
-describe('Mortgage Calculator Test', () => {
-    it('should calculate monthly payment correctly', (done) => {
-        request(app)
-            .post('/calculate')
-            .type('form')
-            .send({ principal: 100000, interestRate: 5, years: 30 })
-            .end((err, res) => {
-                if (err) return done(err);
-                expect(res.text).to.include('Monthly Payment: 536.82');
-                done();
-            });
-    });
+chai.use(chaiHttp);
+
+describe('Calculation Service', () => {
+  it('should calculate the monthly payment correctly', (done) => {
+    const testData = {
+      principal: 200000,
+      interestRate: 5,
+      years: 30
+    };
+
+    chai.request(app)
+      .post('/calculate')
+      .send(testData)
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        expect(res.body).to.have.property('monthlyPayment');
+        expect(res.body.monthlyPayment).to.equal('1073.64'); // Expected result
+        done();
+      });
+  });
+
+  // Add more tests for validation, error cases, etc.
 });
