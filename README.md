@@ -30,14 +30,12 @@ cd mortgage-calculator
 Then, install the dependencies:
 
 ```bash
-Copy code
 npm install
 Running the Application
 To run the application locally:
 ```
 
 ```bash
-Copy code
 npm start
 The server will start, and you can access the application at http://localhost:3000.
 ```
@@ -46,13 +44,11 @@ Dockerizing the Application
 To build the Docker image:
 
 ```bash
-Copy code
 docker build -t mortgage-calculator .
 To run the application using Docker:
 ```
     
 ```bash
-Copy code
 docker run -p 3000:3000 mortgage-calculator
 The application will be accessible at http://localhost:3000.
 ```
