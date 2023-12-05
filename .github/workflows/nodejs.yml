@@ -2,9 +2,9 @@ name: Node.js CI
 
 on:
   push:
-    branches: [main]
+    branches: [ main ]
   pull_request:
-    branches: [main]
+    branches: [ main ]
 
 jobs:
   build:
@@ -12,24 +12,36 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+      - name: Set up Git
+        run: |
+          git config --global user.name 'Your Name'
+          git config --global user.email 'your.email@example.com'
+
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "16.x"
+          node-version: '16.x'
+
       - name: Install dependencies
         run: npm install
+
       - name: Run tests
         run: npm test
 
-      # Add steps for pushing to Docker Hub and deployment as needed
+      - name: Calculate new version and tag
+        run: |
+          NEW_TAG="v$(date +%Y%m%d%H%M%S)"
+          echo "New Tag: $NEW_TAG"
+          git tag $NEW_TAG
+          git push origin $NEW_TAG
 
       - name: Build Docker Image
-        run: docker build -t mortgage-calculator .
+        run: docker build -t mortgage-calculator:$NEW_TAG .
 
       - name: Login to Docker Hub
         run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
 
-      - name: Push Image to Docker Hub
+      - name: Push Image to Docker Hub with tag
         run: |
-          docker tag mortgage-calculator ${{ secrets.DOCKER_USERNAME }}/mortgage-calculator
-          docker push ${{ secrets.DOCKER_USERNAME }}/mortgage-calculator
+          docker tag mortgage-calculator:$NEW_TAG ${{ secrets.DOCKER_USERNAME }}/mortgage-calculator:$NEW_TAG
+          docker push ${{ secrets.DOCKER_USERNAME }}/mortgage-calculator:$NEW_TAG
