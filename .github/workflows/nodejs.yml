@@ -10,7 +10,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      NEW_TAG: "v$(date +%Y%m%d%H%M%S)" # Set the NEW_TAG as an environment variable
+      NEW_TAG: ${{ github.sha }}
 
     steps:
       - uses: actions/checkout@v4
