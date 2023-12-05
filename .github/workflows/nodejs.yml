@@ -52,5 +52,3 @@ jobs:
         run: |
           docker tag mortgage-calculator:${{ env.NEW_TAG }} ${{ secrets.DOCKER_USERNAME }}/mortgage-calculator:${{ env.NEW_TAG }}
           docker push ${{ secrets.DOCKER_USERNAME }}/mortgage-calculator:${{ env.NEW_TAG }}
-          docker tag mortgage-calculator:${{ env.NEW_TAG }} ${{ secrets.DOCKER_USERNAME }}/mortgage-calculator:latest
-          docker push ${{ secrets.DOCKER_USERNAME }}/mortgage-calculator:latest
