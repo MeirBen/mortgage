@@ -1,11 +1,6 @@
 const express = require('express');
 const app = express();
 app.use(express.json()); // for parsing application/json
-module.exports = app;
-
-after(() => {
-  app.close();
-});
 
 app.post('/calculate', (req, res) => {
   const { principal, interestRate, years } = req.body;
@@ -21,7 +16,9 @@ app.post('/calculate', (req, res) => {
   res.json({ monthlyPayment: monthlyPayment.toFixed(2) });
 });
 
-const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => {
+const PORT = 3001;
+server = app.listen(PORT, () => {
   console.log(`Calculation Service running on port ${PORT}`);
 });
+
+module.exports = { app, server }; // Export the app and server

@@ -1,11 +1,16 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
-const app = require('../app'); // Adjust the path to your calculation-service.js
+const { app, server } = require('../app'); // Adjust the path to your calculation-service.js
 const expect = chai.expect;
 
 chai.use(chaiHttp);
 
 describe('Calculation Service', () => {
+
+  after(() => {
+    server.close(); // Close the server after tests
+  });
+
   it('should calculate the monthly payment correctly', (done) => {
     const testData = {
       principal: 200000,
