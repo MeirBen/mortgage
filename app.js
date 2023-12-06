@@ -3,6 +3,9 @@ const app = express();
 app.use(express.json()); // for parsing application/json
 module.exports = app;
 
+after(() => {
+  app.close();
+});
 
 app.post('/calculate', (req, res) => {
   const { principal, interestRate, years } = req.body;
